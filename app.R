@@ -7,7 +7,7 @@ library(gt)
 library(mgcv)
 library(rsconnect)
 
-setwd("/Users/shanefaberman/Downloads/final_sail_present")
+setwd("/Users/shanefaberman/Downloads/sail_swimming_dashboard")
 
 swimming <- read_csv("Olympic_Swimming_Results_1912to2020.csv") |> 
   janitor::clean_names()
@@ -186,7 +186,7 @@ ui <- dashboardPage(
   )
 )
 
-  
+
 server <- function(input, output) {
   
   reactive_country <- reactive({
@@ -554,17 +554,17 @@ server <- function(input, output) {
         annotate("text", x = 1, y = 1, label = "No Medals Won", size = 6, color = "black", fontface = "bold") +
         theme_void()
     } else { 
-    ggplot(full_data, aes(x = stroke, y = distance_in_meters, fill = total_medals)) +
-      geom_tile(color = "black") +  # Add border color to tiles
-      scale_fill_gradient2(low = "white", mid = "lightcoral", high = "blue", midpoint = 0, 
-                           na.value = "white") +  # Set color for NA values
-      labs(title = "Total Number of Medals by Stroke and Distance Since 2010",
-           x = "Stroke",
-           y = "Distance (meters)",
-           fill = "Total Medals") +
-      theme_minimal() +
-      theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 12))
-  }})
+      ggplot(full_data, aes(x = stroke, y = distance_in_meters, fill = total_medals)) +
+        geom_tile(color = "black") +  # Add border color to tiles
+        scale_fill_gradient2(low = "white", mid = "lightcoral", high = "blue", midpoint = 0, 
+                             na.value = "white") +  # Set color for NA values
+        labs(title = "Total Number of Medals by Stroke and Distance Since 2010",
+             x = "Stroke",
+             y = "Distance (meters)",
+             fill = "Total Medals") +
+        theme_minimal() +
+        theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 12))
+    }})
   
   output$plot8 <- renderPlot({
     # Convert results to numeric time
@@ -636,7 +636,7 @@ server <- function(input, output) {
       summarise(avg_medal_time = mean(time))
     
     gam_model <- gam(avg_medal_time ~ s(year), data = model_data)
- 
+    
     future_years <- data.frame(year = c(2024, 2028, 2032))
     
     predicted_times <- predict(gam_model, newdata = future_years)

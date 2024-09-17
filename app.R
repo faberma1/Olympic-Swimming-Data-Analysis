@@ -7,10 +7,10 @@ library(gt)
 library(mgcv)
 
 
-swimming <- read_csv("Downloads/Olympic_Swimming_Results_1912to2020.csv") |> 
+swimming <- read_csv("/Users/shanefaberman/Downloads/final_sail_present/Olympic_Swimming_Results_1912to2020.csv") |> 
   janitor::clean_names()
 
-before_paris <- read_csv("~/Downloads/olympic_medals.csv.zip") |> 
+before_paris <- read_csv("/Users/shanefaberman/Downloads/final_sail_present/olympic_medals.csv.zip") |> 
   janitor::clean_names() |> 
   rename(country = committee,
          team = code)

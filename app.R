@@ -7,8 +7,6 @@ library(gt)
 library(mgcv)
 library(rsconnect)
 
-setwd("/Users/shanefaberman/Downloads/sail_swimming_dashboard")
-
 swimming <- read_csv("Olympic_Swimming_Results_1912to2020.csv") |> 
   janitor::clean_names()
 
